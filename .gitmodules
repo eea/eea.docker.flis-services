@@ -1,0 +1,18 @@
+[submodule "flis.horizon-scanning-tool"]
+	path = flis.horizon-scanning-tool
+	url = https://github.com/eea/flis.horizon-scanning-tool.
+[submodule "eea.flis.horizon-scanning-tool"]
+	branch = master
+
+[submodule "flis.live_catalogue"]
+	path = flis.live_catalogue
+	url = https://github.com/eea/flis.live_catalogue
+[submodule "eea.flis.live_catalogue"]
+	branch = master
+
+[submodule "flis.flip"]
+	path = flis.flip
+	url = https://github.com/eea/flis.flip
+[submodule "eea.flis.flip"]
+	branch = master
+
