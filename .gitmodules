@@ -1,6 +1,6 @@
 [submodule "flis.horizon-scanning-tool"]
 	path = flis.horizon-scanning-tool
-	url = https://github.com/eea/flis.horizon-scanning-tool.
+	url = https://github.com/eea/flis.horizon-scanning-tool
 [submodule "eea.flis.horizon-scanning-tool"]
 	branch = master
 
