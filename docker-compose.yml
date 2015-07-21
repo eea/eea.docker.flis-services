@@ -1,0 +1,66 @@
+#MySQL container 
+
+dbsql:
+    restart: always
+    image: mysql:5.6
+    ports: 
+        - "3306:3306"
+    environment:
+        MYSQL_ROOT_PASSWORD: changeme
+        MYSQL_USER: flis
+        MYSQL_PASSWORD: flis
+        MYSQL_DATABASE: flis
+
+#Postgres container
+
+dbpost:
+    restart: always
+    image: postgres:9.1
+    ports:
+        - "5432:5432"
+    environment:
+        POSTGRES_ROOT_PASWORD: changeme
+        POSTGRES_USER: flis
+        POSTGRES_PASSWORD: flis
+        POSTGRES_DATABASE: flis
+
+#Horizon scanning tool
+
+hstool:
+    build: ./flis.horizon-scanning-tool
+    command: 
+        ./manage.py runserver 0.0.0.0:8000
+    volumes:
+        - ./flis.horizon-scanning-tool/:/hstool
+    links:
+        - dbsql
+    env_file:
+        - ./dev.env
+
+#Flip
+
+flip:
+   build: ./flis.flip
+   command:
+       echo "Flip started"
+   volumes:
+       - ./flis.flip/:/flip
+   links:
+       - dbpost
+   env_file:
+       - ./dev.env
+
+#Live catalogue
+
+livecat:
+    build: ./flis.live_catalogue
+    command:
+        echo "Live catalogue started"
+    volumes:
+        - ./flis.live_catalogue/:/live_catalogue
+    links:
+        - dbsql
+    env_file:
+        - ./dev.env
+
+
