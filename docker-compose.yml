@@ -42,7 +42,7 @@ hstool:
 flip:
    build: ./flis.flip
    command:
-       echo "Flip started"
+       ./manage.py runserver 0.0.0.0:8000
    volumes:
        - ./flis.flip/:/flip
    links:
@@ -55,7 +55,7 @@ flip:
 livecat:
     build: ./flis.live_catalogue
     command:
-        echo "Live catalogue started"
+        ./manage.py runserver 0.0.0.0:8000
     volumes:
         - ./flis.live_catalogue/:/live_catalogue
     links:
