@@ -3,7 +3,7 @@
 dbsql:
     restart: always
     image: mysql:5.6
-    ports: 
+    ports:
         - "3306:3306"
     environment:
         MYSQL_ROOT_PASSWORD: changeme
@@ -26,14 +26,11 @@ dbpost:
 
 hstool:
     build: ./flis.horizon-scanning-tool
-    command: 
-        ./manage.py runserver 0.0.0.0:8003
-    volumes:
-        - ./flis.horizon-scanning-tool/hstool/static
+    restart: always
     links:
         - dbsql
     env_file:
-        - ./dev.env
+        - ./hstool.env
 
 #Flip
 
