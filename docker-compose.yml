@@ -36,27 +36,21 @@ hstool:
 
 flip:
    build: ./flis.flip
-   command:
-       ./manage.py runserver 0.0.0.0:8001
-   volumes:
-       - ./flis.flip/flip/static
+   restart: always
    links:
        - dbpost
    env_file:
-       - ./dev.env
+       - ./flip.env
 
 #Live catalogue
 
 livecat:
     build: ./flis.live_catalogue
-    command:
-        ./manage.py runserver 0.0.0.0:8002
-    volumes:
-        - ./flis.live_catalogue/live_catalogue/static
+    restart: always
     links:
         - dbsql
     env_file:
-        - ./dev.env
+        - ./livecat.env
 
 #Frontend server
 
