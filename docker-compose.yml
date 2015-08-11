@@ -52,6 +52,16 @@ livecat:
     env_file:
         - ./livecat.env
 
+#Metadata
+
+metadata:
+    build: ./flis.metadata
+    restart: always
+    links:
+        - dbsql
+    env_file:
+        - ./metadata.env
+
 #Frontend server
 
 frontend:
@@ -61,9 +71,11 @@ frontend:
         - hstool
         - flip
         - livecat
+	- metadata
     volumes_from:
         - hstool
         - flip
         - livecat
+	- metadata
     ports:
         - 80:80

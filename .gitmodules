@@ -16,3 +16,8 @@
 [submodule "eea.flis.flip"]
 	branch = dockerize
 
+[submodule "flis.metadata"]
+	path = flis.metadata
+	url = https://github.com/eea/flis.metadata
+[submodule "eea.flis.metada"]
+	branch = dockerize
