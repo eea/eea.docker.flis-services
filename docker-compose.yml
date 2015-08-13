@@ -5,11 +5,8 @@ dbsql:
     image: mysql:5.6
     ports:
         - "3306:3306"
-    environment:
-        MYSQL_ROOT_PASSWORD: changeme
-        MYSQL_USER: flis
-        MYSQL_PASSWORD: flis
-        MYSQL_DATABASE: flis
+    env_file:
+        - env/dbsql.env
 
 #Postgres container
 
@@ -18,9 +15,8 @@ dbpost:
     image: postgres:9.1
     ports:
         - "5432:5432"
-    environment:
-        POSTGRES_USER: flis
-        POSTGRES_PASSWORD: flis
+    env_file:
+        - env/dbpost.env
 
 #Horizon scanning tool
 
@@ -30,7 +26,7 @@ hstool:
     links:
         - dbsql
     env_file:
-        - ./hstool.env
+        - env/hstool.env
 
 #Flip
 
@@ -40,7 +36,7 @@ flip:
    links:
        - dbpost
    env_file:
-       - ./flip.env
+       - env/flip.env
 
 #Live catalogue
 
@@ -50,7 +46,7 @@ livecat:
     links:
         - dbsql
     env_file:
-        - ./livecat.env
+        - env/livecat.env
 
 #Metadata
 
@@ -60,7 +56,7 @@ metadata:
     links:
         - dbsql
     env_file:
-        - ./metadata.env
+        - env/metadata.env
 
 #Frontend server
 
@@ -71,11 +67,11 @@ frontend:
         - hstool
         - flip
         - livecat
-	- metadata
+        - metadata
     volumes_from:
         - hstool
         - flip
         - livecat
-	- metadata
+        - metadata
     ports:
         - 80:80
