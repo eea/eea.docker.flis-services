@@ -63,6 +63,7 @@ metadata:
 frontend:
     build: frontend
     restart: always
+    command: ./run.sh
     links:
         - hstool
         - flip
@@ -75,3 +76,5 @@ frontend:
         - metadata
     ports:
         - 80:80
+    env_file:
+        - env/nginx.env
