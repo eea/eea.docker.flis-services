@@ -50,3 +50,8 @@ Create databases
 
 
     ./migrate.sh
+
+4.3. Load data from sql dump:
+
+
+    ./load_data.sh <your_database> <json dump file>
