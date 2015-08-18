@@ -2,17 +2,22 @@
 	path = flis.horizon-scanning-tool
 	url = https://github.com/eea/flis.horizon-scanning-tool
 [submodule "eea.flis.horizon-scanning-tool"]
-	branch = master
+	branch = dockerize
 
 [submodule "flis.live_catalogue"]
 	path = flis.live_catalogue
 	url = https://github.com/eea/flis.live_catalogue
 [submodule "eea.flis.live_catalogue"]
-	branch = master
+        branch = dockerize
 
 [submodule "flis.flip"]
 	path = flis.flip
 	url = https://github.com/eea/flis.flip
 [submodule "eea.flis.flip"]
-	branch = master
+	branch = dockerize
 
+[submodule "flis.metadata"]
+	path = flis.metadata
+	url = https://github.com/eea/flis.metadata
+[submodule "eea.flis.metada"]
+	branch = dockerize

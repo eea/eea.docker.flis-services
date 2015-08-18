@@ -1,0 +1,80 @@
+#MySQL container 
+
+dbsql:
+    restart: always
+    image: mysql:5.6
+    ports:
+        - "3306:3306"
+    env_file:
+        - env/dbsql.env
+
+#Postgres container
+
+dbpost:
+    restart: always
+    image: postgres:9.1
+    ports:
+        - "5432:5432"
+    env_file:
+        - env/dbpost.env
+
+#Horizon scanning tool
+
+hstool:
+    build: ./flis.horizon-scanning-tool
+    restart: always
+    links:
+        - dbsql
+    env_file:
+        - env/hstool.env
+
+#Flip
+
+flip:
+   build: ./flis.flip
+   restart: always
+   links:
+       - dbpost
+   env_file:
+       - env/flip.env
+
+#Live catalogue
+
+livecat:
+    build: ./flis.live_catalogue
+    restart: always
+    links:
+        - dbsql
+    env_file:
+        - env/livecat.env
+
+#Metadata
+
+metadata:
+    build: ./flis.metadata
+    restart: always
+    links:
+        - dbsql
+    env_file:
+        - env/metadata.env
+
+#Frontend server
+
+frontend:
+    build: frontend
+    restart: always
+    command: ./run.sh
+    links:
+        - hstool
+        - flip
+        - livecat
+        - metadata
+    volumes_from:
+        - hstool
+        - flip
+        - livecat
+        - metadata
+    ports:
+        - 80:80
+    env_file:
+        - env/nginx.env
