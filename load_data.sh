@@ -5,9 +5,9 @@ then
     case $1 in
     hstool)
         docker exec eeadockerflisservices_hstool_1 touch $2
-        docker cp $2 eeadockerflisservices_hstool_1:/horizon-scanning-tool/$2
+        docker cp $2 eeadockerflisservices_hstool_1:/horizon_scanning/$2
         docker exec eeadockerflisservices_hstool_1 python manage.py loaddata $2
-        docker exec eeadockerflisservices_hstool_1 rm -f /horizon-scanning-tool/$2
+        docker exec eeadockerflisservices_hstool_1 rm -f /horizon_scanning/$2
         exit
     ;;
     livecat)
